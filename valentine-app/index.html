@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Você, Meu Amor 💝</title>
+    <meta name="description" content="Uma surpresa especial para o Dia dos Namorados">
+    
+    <!-- Pré-carregamentos -->
+    <link rel="preload" href="css/styles.css" as="style">
+    <link rel="preload" href="js/main.js" as="script">
+    
+    <!-- Fontes -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;700&family=Playfair+Display:wght@400;500;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/favicon.ico">
+</head>
+<body class="loading">
+    <!-- Loader -->
+    <div class="loader">
+        <div class="heart-loader"></div>
+    </div>
+    
+    <!-- Aplicação -->
+    <main id="app" class="app-hidden">
+        <!-- Efeito de Pétalas -->
+        <div id="petals-container" aria-hidden="true"></div>
+        
+        <!-- Envelope -->
+        <div class="envelope-container" id="envelope-container">
+            <svg class="envelope" viewBox="0 0 300 200" aria-label="Clique para abrir">
+                <path class="envelope-back" d="M10,50 L150,180 L290,50 L150,10 Z"/>
+                <path class="envelope-front" d="M10,50 L290,50 L150,180 Z"/>
+                <text class="envelope-text" x="150" y="120">Para Você</text>
+            </svg>
+        </div>
+        
+        <!-- Carta -->
+        <div id="letter" class="letter hidden">
+            <div class="letter-paper">
+                <div class="letter-header">
+                    <h1 class="handwriting">Meu Amor,</h1>
+                    <div class="letter-divider"></div>
+                </div>
+                <div id="letter-content" class="letter-content"></div>
+            </div>
+            
+            <div class="letter-controls">
+                <button id="music-btn" class="control-btn">
+                    <span class="btn-icon">🎵</span>
+                    <span class="btn-text">Música</span>
+                </button>
+                <button id="gallery-btn" class="control-btn">
+                    <span class="btn-icon">🖼️</span>
+                    <span class="btn-text">Fotos</span>
+                </button>
+                <button id="game-btn" class="control-btn">
+                    <span class="btn-icon">🎮</span>
+                    <span class="btn-text">Jogo</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Galeria -->
+        <div id="gallery" class="gallery hidden">
+            <h2 class="section-title handwriting">Nossos Momentos</h2>
+            <div class="gallery-grid" id="gallery-grid"></div>
+            <div class="gallery-controls">
+                <button id="upload-btn" class="upload-btn">Adicionar fotos</button>
+                <input type="file" id="photo-upload" class="hidden" accept="image/*" multiple>
+            </div>
+        </div>
+        
+        <!-- Jogo -->
+        <div id="game" class="game hidden">
+            <h2 class="section-title handwriting">Encontre os Corações</h2>
+            <p class="game-instructions">Toque em todos os corações que aparecerem!</p>
+            <div class="game-container">
+                <div class="game-header">
+                    <span class="game-score">Corações: <span id="score">0</span>/5</span>
+                    <button id="start-game" class="game-start-btn">Começar</button>
+                </div>
+                <div id="game-area" class="game-area">
+                    <p class="game-message">Clique em "Começar" para iniciar!</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Rodapé -->
+    <footer class="footer">
+        <p>Feito com ❤️ para você</p>
+        <p class="footer-year"><span id="current-year"></span></p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/utils.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

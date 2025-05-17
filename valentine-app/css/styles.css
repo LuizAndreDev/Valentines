@@ -1,0 +1,410 @@
+/* Variáveis */
+:root {
+    --rose-dust: #FFD1DC;
+    --vintage-rose: #F8C8DC;
+    --rose-emphasis: #F5B5C8;
+    --deep-berry: #3A2E39;
+    --paper: #FFFCF5;
+    --shadow-soft: 0 4px 24px rgba(245, 181, 200, 0.2);
+    --transition-smooth: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Reset e Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--deep-berry);
+    background-color: var(--paper);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Loader */
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--paper);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.6s ease-out;
+}
+
+.heart-loader {
+    width: 60px;
+    height: 60px;
+    background: var(--rose-emphasis);
+    transform: rotate(45deg);
+    position: relative;
+    box-shadow: var(--shadow-soft);
+}
+
+.heart-loader:before,
+.heart-loader:after {
+    content: '';
+    width: 60px;
+    height: 60px;
+    background: var(--rose-emphasis);
+    border-radius: 50%;
+    position: absolute;
+}
+
+.heart-loader:before {
+    top: -30px;
+    left: 0;
+}
+
+.heart-loader:after {
+    top: 0;
+    left: -30px;
+}
+
+/* Layout Principal */
+#app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    opacity: 0;
+    transition: opacity 0.6s ease-out;
+}
+
+body.loaded .loader {
+    opacity: 0;
+    pointer-events: none;
+}
+
+body.loaded #app {
+    opacity: 1;
+}
+
+/* Envelope */
+.envelope-container {
+    margin: 2rem auto;
+    filter: drop-shadow(0 12px 24px rgba(58, 46, 57, 0.1));
+    transition: var(--transition-smooth);
+    cursor: pointer;
+}
+
+.envelope {
+    width: 280px;
+    height: 180px;
+}
+
+.envelope-back {
+    fill: var(--rose-dust);
+    stroke: var(--vintage-rose);
+    stroke-width: 1.5;
+}
+
+.envelope-front {
+    fill: var(--vintage-rose);
+    stroke: var(--rose-emphasis);
+    stroke-width: 1;
+}
+
+.envelope-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 24px;
+    fill: var(--deep-berry);
+    text-anchor: middle;
+    pointer-events: none;
+}
+
+/* Carta */
+.letter {
+    width: 90%;
+    max-width: 600px;
+    margin: 2rem auto;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%23F5B5C8" stroke-width="0.5" stroke-dasharray="2,2" opacity="0.3"/></svg>'), 
+                linear-gradient(to bottom right, var(--paper) 0%, #FFF9FB 100%);
+    border-radius: 8px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(245, 181, 200, 0.15);
+    backdrop-filter: blur(2px);
+    transform: translateY(20px);
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+
+.letter.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.letter-paper {
+    padding: 2rem;
+}
+
+.letter-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.letter-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--rose-emphasis);
+}
+
+.letter-divider {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--rose-emphasis), transparent);
+    margin: 1rem auto;
+}
+
+.letter-content {
+    font-size: 1.25rem;
+    line-height: 1.8;
+}
+
+.letter-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+/* Galeria */
+.gallery {
+    width: 90%;
+    max-width: 1000px;
+    margin: 2rem auto;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+
+.gallery.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    text-align: center;
+    color: var(--rose-emphasis);
+    margin-bottom: 2rem;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.polaroid {
+    background: white;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transform: rotate(-2deg);
+    transition: var(--transition-smooth);
+}
+
+.polaroid:nth-child(even) {
+    transform: rotate(2deg);
+}
+
+.polaroid:hover {
+    transform: rotate(0deg) scale(1.05);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+.polaroid-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+}
+
+.polaroid-caption {
+    text-align: center;
+    margin-top: 0.5rem;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.2rem;
+}
+
+/* Jogo */
+.game {
+    width: 90%;
+    max-width: 600px;
+    margin: 2rem auto;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+
+.game.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.game-instructions {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.game-container {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-soft);
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.game-score {
+    color: var(--rose-emphasis);
+    font-weight: 600;
+}
+
+.game-start-btn {
+    background: var(--rose-emphasis);
+    color: white;
+    border: none;
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.game-start-btn:hover {
+    background: var(--deep-berry);
+    transform: translateY(-2px);
+}
+
+.game-area {
+    height: 300px;
+    background: var(--paper);
+    border: 2px solid var(--rose-dust);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Controles */
+.control-btn {
+    display: flex;
+    align-items: center;
+    background: var(--rose-dust);
+    color: var(--deep-berry);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    box-shadow: var(--shadow-soft);
+}
+
+.control-btn:hover {
+    background: var(--vintage-rose);
+    transform: translateY(-3px);
+}
+
+.btn-icon {
+    margin-right: 0.5rem;
+}
+
+.upload-btn {
+    background: var(--rose-dust);
+    color: var(--deep-berry);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: block;
+    margin: 0 auto;
+    box-shadow: var(--shadow-soft);
+}
+
+.upload-btn:hover {
+    background: var(--vintage-rose);
+    transform: translateY(-3px);
+}
+
+/* Rodapé */
+.footer {
+    text-align: center;
+    padding: 1.5rem;
+    color: var(--deep-berry);
+    font-size: 0.9rem;
+    margin-top: auto;
+}
+
+.footer-year {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+}
+
+/* Utilitários */
+.hidden {
+    display: none !important;
+}
+
+.handwriting {
+    font-family: 'Dancing Script', cursive;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .envelope {
+        width: 240px;
+        height: 160px;
+    }
+    
+    .letter-paper {
+        padding: 1.5rem;
+    }
+    
+    .letter-header h1 {
+        font-size: 2rem;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .game-area {
+        height: 250px;
+    }
+    
+    .control-btn, .upload-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .envelope-container:hover {
+        transform: translateY(-8px) scale(1.02);
+    }
+}
